@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>よくある質問｜鮨 小晴</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
+  :root {
+    --ink: #1a1a1a;
+    --muted: #6b6b6b;
+    --pale: #f5f3ef;
+    --gold: #b8935a;
+    --gold-light: #e8dcc8;
+    --green: #2D5A3D;
+    --white: #ffffff;
+    --rule: #d9d0c0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--pale);
+    color: var(--ink);
+    font-weight: 300;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--white);
+    text-align: center;
+    padding: 48px 24px 40px;
+  }
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .hero-sub {
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.8;
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 16px 64px;
+  }
+
+  /* ── CATEGORY ── */
+  .category {
+    margin-top: 32px;
+  }
+  .category-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .category-title-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gold-light);
+  }
+  .category-title-text {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* ── ACCORDION ── */
+  .faq-item {
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+  }
+  .faq-item:first-of-type { border-radius: 2px 2px 0 0; }
+  .faq-item:last-of-type { border-radius: 0 0 2px 2px; border-bottom: none; }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 18px 20px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .faq-q-mark {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .faq-q-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.6;
+    flex: 1;
+    letter-spacing: 0.03em;
+  }
+  .faq-arrow {
+    font-size: 12px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 3px;
+    transition: transform 0.3s;
+  }
+  .faq-item.open .faq-arrow {
+    transform: rotate(180deg);
+  }
+
+  .faq-a {
+    display: none;
+    padding: 0 20px 18px 46px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+  .faq-item.open .faq-a {
+    display: block;
+  }
+  .faq-a strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .faq-a .highlight {
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 40px 24px 0;
+    text-align: center;
+  }
+  .cta-lead {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 8px;
+  }
+  .cta-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.8;
+  }
+  .cta-btn {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto 12px;
+    padding: 16px;
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+  .cta-btn.primary {
+    background: var(--green);
+    color: var(--white);
+  }
+  .cta-btn.secondary {
+    background: var(--gold);
+    color: var(--white);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">FAQ</p>
+  <h1 class="hero-title">よくある質問</h1>
+  <p class="hero-sub">気になることはここで解決を。<br>それでも不安なことはLINEでどうぞ。</p>
+</div>
+
+<div class="container">
+
+  <!-- 基本情報 -->
+  <div class="category">
+    <div class="category-title">
+      <div class="category-title-line"></div>
+      <span class="category-title-text">基本情報</span>
+      <div class="category-title-line"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">何名から利用できますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a"><span class="highlight">4名様から最大22名様まで</span>対応しています。少人数でも大歓迎です。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">場所はどこですか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">静岡県浜松市中央区紺屋町301-16、完全個室の鮨店です。<span class="highlight">五社神社から徒歩1分</span>の場所にあります。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">日程はいつでも大丈夫ですか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">ご希望の日程をお聞きした上で、空き状況をご確認します。まずはLINEでご相談ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">完全貸切になりますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい。<span class="highlight">完全個室・完全貸切</span>でのご案内です。他のお客様と空間を共有することはありません。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">所要時間はどのくらいですか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">食事会のみの場合は約2〜3時間が目安です。神前式とのセットの場合はご挙式の時間が加わります。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">子どもも参加できますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">もちろんです。お子様用のお食事もご用意できます。事前にご相談ください。</div>
+    </div>
+  </div>
+
+  <!-- 料金・見積もり -->
+  <div class="category">
+    <div class="category-title">
+      <div class="category-title-line"></div>
+      <span class="category-title-text">料金・見積もり</span>
+      <div class="category-title-line"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">会費制でもできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">もちろん可能です。会費制であればお二人のご負担はとても少なくすみます。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">見積もりはどうやって出してもらえますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">LINEでご連絡いただければ、ご状況をお聞きした上で具体的な見積もりをご提示します。<span class="highlight">無料・無理なし</span>でご相談いただけます。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">なぜこんなに安いのですか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">私たちは浜松市の晴れの日を祝う寿司店として、結婚式場の総支配人が運営しております。結婚式だけの収益に頼らず、マージンをいただかず、<span class="highlight">お客様に晴れの日を適正価格で安心して迎えてほしい</span>という理念のもと運営しておりますので、どうぞご安心してお任せくださいませ。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">見積もりからあとで金額が上がることはありますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">小晴では<span class="highlight">見積もり＝できるだけ最終金額になるよう</span>設計しています。料理・衣裳・写真はワンプライス固定で、あとから積み上がる構造にしていません。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">一般の結婚式場と比べてどのくらい違いますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">同じ内容・人数で比較した場合、<span class="highlight">一般式場の半額以下</span>になることが多いです。マージンを取らないため、カメラマンや引出物なども市場価格より大幅にお得にご案内できます。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">予算が少なくても大丈夫ですか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい。衣裳・写真・引出物などはオプションなので、必要なものだけに絞ってシンプルに開催することも可能です。まずご相談ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">支払い方法は？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">銀行振込にて承っております。詳細はご契約時にご案内します。</div>
+    </div>
+  </div>
+
+  <!-- 料理・飲み物 -->
+  <div class="category">
+    <div class="category-title">
+      <div class="category-title-line"></div>
+      <span class="category-title-text">料理・飲み物</span>
+      <div class="category-title-line"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">料理はどんな内容ですか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">寿司職人と和食職人による<span class="highlight">晴れの日専用の特別コース</span>です。職人がゲストの目の前で握る演出もあります。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">アレルギー対応はできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい。事前にお知らせいただければ対応します。お気軽にご相談ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">飲み放題はありますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">飲み放題ではなく、<span class="highlight">飲まれた分だけの実費精算</span>です。お酒を飲まない方の分まで負担していただく必要がないため、このスタイルをおすすめしています。目安はおひとり様550〜2,200円程度です。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">ウェルカムドリンクはありますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい、ご用意しています。詳細はご相談ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">ウェディングケーキはありますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">ご希望があればご用意可能です。ご相談ください。</div>
+    </div>
+  </div>
+
+  <!-- 衣裳・美容 -->
+  <div class="category">
+    <div class="category-title">
+      <div class="category-title-line"></div>
+      <span class="category-title-text">衣裳・美容</span>
+      <div class="category-title-line"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">和装の衣裳はありますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">あります。白無垢または色打掛と紋付袴のセットを<span class="highlight">66,000円（追加料金なし）</span>でご用意しています。自社所有のため中間マージンが発生しません。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">洋装（ウェディングドレス）はありますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">自社での洋装はございませんが、外部の衣裳店をご紹介することは可能です。持ち込みも自由です。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">ヘアメイク・着付けはお願いできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい。ブライダル専門のスタイリストが担当します。料金は<span class="highlight">市場価格の約70%</span>でご案内しています。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">お色直しはできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">可能です。2着目以降はオプション扱いになります。ご希望の方はご相談ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">衣裳を持ち込むことはできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">もちろんです。<span class="highlight">持ち込み料はいただきません。</span></div>
+    </div>
+  </div>
+
+  <!-- 挙式スタイル -->
+  <div class="category">
+    <div class="category-title">
+      <div class="category-title-line"></div>
+      <span class="category-title-text">挙式スタイル</span>
+      <div class="category-title-line"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">挙式なしでも大丈夫ですか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">もちろんです。<span class="highlight">食事会のみ</span>での開催も大歓迎です。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">神前式はできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい。<span class="highlight">徒歩1分の五社神社</span>をはじめ、近隣の神社でのご案内が可能です。挙式後に小晴で食事会というセットプランが人気です。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">人前式はできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい。小晴の個室内で行う人前式も対応しています。宗教不問で、おふたりらしい誓いの言葉で進めることができます。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">他の会場で挙式してから食事会だけ利用できますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">できます。教会式やホテル挙式のあとに小晴で祝宴を、という形も大歓迎です。二次会としての利用も可能です。</div>
+    </div>
+  </div>
+
+  <!-- 写真・引出物 -->
+  <div class="category">
+    <div class="category-title">
+      <div class="category-title-line"></div>
+      <span class="category-title-text">写真・引出物</span>
+      <div class="category-title-line"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">写真撮影はお願いできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい。プロカメラマンによるスナップ撮影を<span class="highlight">38,500円</span>でご案内しています。全時間撮影・データ納品枚数制限なしです。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">アルバム制作はできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">製本アルバムはオプションです。データ納品は撮影料金に含まれています。ご希望の方はご相談ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">引出物はお願いできますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい。<span class="highlight">全品20〜40%OFF</span>でご案内できます。持ち込みも自由です（なくてもできます）。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">持ち込みは自由ですか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">結婚式に必要なものであれば<span class="highlight">持ち込み料なし</span>で自由にお持ちいただけます。</div>
+    </div>
+  </div>
+
+  <!-- 準備・打ち合わせ -->
+  <div class="category">
+    <div class="category-title">
+      <div class="category-title-line"></div>
+      <span class="category-title-text">準備・打ち合わせ</span>
+      <div class="category-title-line"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">打ち合わせは何回ありますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a"><span class="highlight">最短1回</span>で完結します。お食事をしながら打ち合わせするスタイルです。（たくさん打ち合わせしたい方ももちろん大歓迎です）</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">どのくらい前から準備が必要ですか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">最短<span class="highlight">2週間前</span>からでも対応可能です。目安として2〜3ヶ月前からのご相談が理想ですが、急なご相談もお気軽にLINEでご連絡ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">招待状や席次表は用意してもらえますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">ウェブ招待状・席札・テーブルチャートは会食婚プランに含まれています。紙の招待状はご自身でのご手配またはご相談ください（なくてもできます）。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">顔合わせや結納にも使えますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">はい。結婚式以外に顔合わせ食事会・結納の場としてもご利用いただけます。お気軽にご相談ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">キャンセルポリシーはありますか？</span>
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">キャンセル規定はございます。詳細はご契約時にご説明します。まずはお気軽にご相談ください。</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div style="width:40px; height:1px; background:var(--gold); margin:0 auto 24px;"></div>
+    <p class="cta-lead">解決しない疑問は<br>LINEで聞いてください</p>
+    <p class="cta-sub">どんな小さなことでもお気軽に。<br>代表が直接お答えします。</p>
+    <a href="https://line.me/R/ti/p/@126nuyxn" class="cta-btn primary">LINEで質問する</a>
+    <a href="https://koharuharenohi.github.io/koharu-lineprice/estimate.html" class="cta-btn secondary">人数別見積もりを確認する</a>
+  </div>
+
+</div>
+
+<script>
+function toggle(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
