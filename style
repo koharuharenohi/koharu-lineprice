@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>挙式スタイルを選ぶ｜鮨 小晴</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:    #1e1a16;
+    --stone:  #9e9187;
+    --mist:   #f2ede8;
+    --paper:  #faf8f5;
+    --gold:   #b89a6a;
+    --white:  #ffffff;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--white);
+    border-bottom: 1px solid #e8e2da;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .site-header .brand {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--stone);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 52px 24px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(184,154,106,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+  }
+  .hero-desc {
+    font-size: 0.83rem;
+    color: var(--stone);
+    line-height: 1.9;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px 32px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ddd5c8, transparent);
+  }
+  .divider-diamond {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    opacity: 0.6;
+  }
+
+  /* ── STYLE CARDS ── */
+  .styles-list {
+    padding: 0 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .style-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.25s ease;
+  }
+  .style-card:active {
+    box-shadow: 0 2px 16px rgba(0,0,0,0.09);
+  }
+
+  .card-header {
+    padding: 24px 24px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--mist);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .card-title-block {}
+  .card-label {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .card-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .card-body {
+    padding: 16px 24px 24px;
+  }
+  .card-desc {
+    font-size: 0.83rem;
+    color: #4a4540;
+    line-height: 1.95;
+    margin-bottom: 16px;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--stone);
+    background: var(--mist);
+    border-radius: 20px;
+    padding: 3px 10px;
+  }
+
+  /* ── ACCENT CARD: 神前式 ── */
+  .style-card.featured .card-icon {
+    background: linear-gradient(135deg, #e8ddd0, #f5ede0);
+  }
+  .style-card.featured {
+    border: 1px solid rgba(184,154,106,0.3);
+  }
+
+  /* ── HIGHLIGHT NOTE ── */
+  .highlight-note {
+    margin: 12px 24px 0;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, rgba(184,154,106,0.08), rgba(184,154,106,0.04));
+    border-left: 2px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.76rem;
+    color: var(--stone);
+    line-height: 1.8;
+  }
+  .highlight-note strong {
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* ── BOTTOM CTA ── */
+  .bottom-section {
+    padding: 40px 24px 56px;
+    text-align: center;
+  }
+  .bottom-section p {
+    font-size: 0.82rem;
+    color: var(--stone);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+  .cta-btn {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    padding: 15px 24px;
+    background: var(--ink);
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+  .cta-btn:active { background: #3a3530; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    padding: 24px;
+    text-align: center;
+    border-top: 1px solid #e8e2da;
+  }
+  .site-footer p {
+    font-size: 0.7rem;
+    color: #bdb4aa;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── REVEAL ANIMATION ── */
+  .style-card {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .style-card:nth-child(1) { animation-delay: 0.05s; }
+  .style-card:nth-child(2) { animation-delay: 0.15s; }
+  .style-card:nth-child(3) { animation-delay: 0.25s; }
+  .style-card:nth-child(4) { animation-delay: 0.35s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .style-card { animation: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <p class="brand">鮨 小晴 ── 食事会婚のご案内</p>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">CEREMONY STYLE</p>
+  <h1>挙式スタイルを<br>お選びください</h1>
+  <p class="hero-desc">小晴では、おふたりの想いに合わせてさまざまな挙式スタイルに対応しています。どうぞゆっくりお選びください。</p>
+</section>
+
+<div class="divider"><div class="divider-diamond"></div></div>
+
+<!-- CARDS -->
+<div class="styles-list">
+
+  <!-- 挙式なし -->
+  <div class="style-card">
+    <div class="card-header">
+      <div class="card-icon">🍱</div>
+      <div class="card-title-block">
+        <p class="card-label">DINNER ONLY</p>
+        <h2 class="card-title">挙式なし<br><span style="font-size:0.85rem; color:#9e9187;">食事会のみ</span></h2>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-desc">
+        「式は気恥ずかしい」「身内だけで食卓を囲みたい」そんなおふたりに。挙式なしでも、小晴の個室での食事会は立派な「晴れの日」です。大切な人たちと美しい鮨を囲む時間が、一生の記憶になります。
+      </p>
+      <div class="card-tags">
+        <span class="tag">気負いなく</span>
+        <span class="tag">家族だけの食卓</span>
+        <span class="tag">シンプルに祝う</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 神前式 -->
+  <div class="style-card featured">
+    <div class="card-header">
+      <div class="card-icon">⛩️</div>
+      <div class="card-title-block">
+        <p class="card-label">SHINTO CEREMONY</p>
+        <h2 class="card-title">神前式</h2>
+      </div>
+    </div>
+    <div class="highlight-note">
+      <strong>📍 徒歩1分</strong>　小晴から歩いてすぐの五社神社をはじめ、近隣の神社でのご案内が可能です。
+    </div>
+    <div class="card-body">
+      <p class="card-desc">
+        厳かな神殿での誓いは、日本の結婚式の原点。古来より続く作法の中に身を置くことで、おふたりと家族の絆が深まります。挙式後は小晴の個室へ移動し、心づくしの鮨で祝宴を。神聖な時間と美食が、ひとつの晴れの日を完成させます。
+      </p>
+      <div class="card-tags">
+        <span class="tag">日本の伝統</span>
+        <span class="tag">家族の絆</span>
+        <span class="tag">神社と個室鮨のセット</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 会場人前式 -->
+  <div class="style-card">
+    <div class="card-header">
+      <div class="card-icon">🥢</div>
+      <div class="card-title-block">
+        <p class="card-label">CIVIL CEREMONY</p>
+        <h2 class="card-title">会場人前式</h2>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-desc">
+        証人の前で「この人と幸せになります」と誓うだけ。それも立派な結婚式のカタチです。小晴の個室空間で、おふたりらしい言葉で誓いを交わしてください。
+      </p>
+      <div class="card-tags">
+        <span class="tag">自由な演出</span>
+        <span class="tag">宗教不問</span>
+        <span class="tag">個室で完結</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 外部挙式 -->
+  <div class="style-card">
+    <div class="card-header">
+      <div class="card-icon">🌸</div>
+      <div class="card-title-block">
+        <p class="card-label">EXTERNAL CEREMONY</p>
+        <h2 class="card-title">外部挙式<br><span style="font-size:0.85rem; color:#9e9187;">＋ 小晴で披露食事会</span></h2>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-desc">
+        教会式やホテルでの挙式など、他の会場で式を挙げた後に小晴で祝宴を。「式は憧れの場所で、食事会は本当に好きな空間で」というおふたりの思いを形にします。挙式会場と小晴、それぞれの良さを組み合わせた過ごし方です。
+      </p>
+      <div class="card-tags">
+        <span class="tag">他会場と組み合わせ</span>
+        <span class="tag">二次会にも</span>
+        <span class="tag">好きな場所で式を</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-section">
+  <p>どのスタイルがご自身に合うか、<br>まずはお気軽にご相談ください。</p>
+  <a href="#" class="cta-btn">LINEで相談してみる</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>鮨 小晴｜浜松市紺屋町</p>
+</footer>
+
+</body>
+</html>
