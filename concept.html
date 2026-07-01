@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小晴の食事会婚のススメ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Zen+Antique+Soft&family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink:   #100f0d;
+  --sky:   #2d5f82;
+  --paper: #f4efe4;
+  --gold:  #a8854a;
+  --red:   #7a1e1e;
+  --gray:  #888078;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+.panel {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1);
+}
+.panel.visible { opacity: 1; transform: translateY(0); }
+
+.fude {
+  font-family: 'Yuji Syuku', serif;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+}
+.fude-sm {
+  font-family: 'Zen Antique Soft', serif;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  color: var(--gray);
+}
+.sans {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+}
+
+.bg-kanji {
+  position: absolute;
+  font-family: 'Yuji Syuku', serif;
+  color: rgba(16,15,13,0.10);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.hanko {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.75;
+}
+.hanko span {
+  font-family: 'Yuji Syuku', serif;
+  font-size: 0.65rem;
+  color: var(--red);
+  writing-mode: vertical-rl;
+  letter-spacing: 0.1em;
+}
+
+.p1 { background: var(--sky); }
+.p1 .fude {
+  font-size: clamp(3.2rem, 16vw, 6rem);
+  color: var(--paper);
+  text-shadow: 3px 6px 32px rgba(0,0,0,0.6);
+  z-index: 1;
+  position: relative;
+}
+.p1 .accent { color: var(--gold); }
+.p1-sub {
+  position: absolute;
+  bottom: 44px;
+  left: 0; right: 0;
+  text-align: center;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: rgba(244,239,228,0.3);
+  z-index: 1;
+}
+
+.p2 { background: var(--paper); }
+.p2 .fude { font-size: clamp(1.9rem, 9.5vw, 3.4rem); z-index:1; position:relative; }
+.p2 .fude-sm { font-size: clamp(0.85rem, 4vw, 1.1rem); margin-right:32px; z-index:1; position:relative; }
+
+.p3 { background: var(--sky); }
+.p3 .fude { font-size: clamp(2.6rem, 13vw, 5rem); color:var(--paper); z-index:1; position:relative; }
+
+.p-for { background: var(--paper); }
+.p-for .fude { font-size: clamp(2rem, 10vw, 3.8rem); z-index:1; position:relative; }
+.p-for .num-label {
+  position: absolute;
+  top: 36px; right: 32px;
+  font-family: 'Yuji Syuku', serif;
+  font-size: 0.75rem;
+  color: var(--gold);
+  writing-mode: vertical-rl;
+  letter-spacing: 0.2em;
+  z-index: 1;
+}
+
+.p-feat-title { background: var(--paper); }
+.p-feat-title .fude { font-size: clamp(2.2rem, 11vw, 4rem); z-index:1; position:relative; }
+.p-feat-title .fude-sm { font-size: clamp(0.85rem, 4vw, 1.1rem); z-index:1; position:relative; margin-right:28px; }
+
+.p-feat { background: var(--sky); }
+.p-feat .num {
+  font-family: 'Yuji Syuku', serif;
+  font-size: clamp(4rem, 20vw, 7rem);
+  color: rgba(168,133,74,0.25);
+  writing-mode: vertical-rl;
+  line-height: 1;
+  position: absolute;
+  left: 20px; top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+.p-feat .fude { font-size: clamp(2rem, 10vw, 3.6rem); color:var(--paper); z-index:1; position:relative; }
+.p-feat .fude-sm { font-size: clamp(0.78rem, 3.5vw, 1rem); color:rgba(244,239,228,0.5); z-index:1; position:relative; margin-right:24px; }
+
+.p-price { background: var(--paper); }
+.p-price .fude { font-size: clamp(1.8rem, 9vw, 3.2rem); z-index:1; position:relative; }
+.p-price .accent { color: var(--red); }
+.p-price .fude-sm { font-size: clamp(0.8rem, 3.5vw, 1rem); z-index:1; position:relative; margin-right:24px; }
+
+.p-flow { background: var(--sky); }
+.p-flow .fude { font-size: clamp(2rem, 10vw, 3.6rem); color:var(--paper); z-index:1; position:relative; }
+.flow-list { writing-mode: horizontal-tb; z-index:1; position:relative; margin-left:32px; }
+.flow-item {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(168,133,74,0.2);
+  display: flex; align-items: center; gap: 10px;
+}
+.flow-item:last-child { border-bottom: none; }
+.flow-dot { width:5px; height:5px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+.flow-text { font-family:'Yuji Syuku',serif; font-size:0.88rem; color:rgba(244,239,228,0.85); letter-spacing:0.06em; }
+.flow-note { font-family:'Noto Sans JP',sans-serif; font-size:0.65rem; color:rgba(244,239,228,0.3); font-weight:300; margin-left:6px; }
+
+.p-faq { background: var(--paper); }
+.p-faq .fude { font-size: clamp(2rem, 10vw, 3.6rem); z-index:1; position:relative; }
+.faq-wrap { writing-mode: horizontal-tb; z-index:1; position:relative; margin-left:32px; max-width:240px; }
+.faq-item { padding:12px 0; border-bottom:1px solid rgba(168,133,74,0.25); }
+.faq-item:last-child { border-bottom:none; }
+.faq-q { font-family:'Yuji Syuku',serif; font-size:0.82rem; color:var(--ink); margin-bottom:4px; }
+.faq-q::before { content:'Q. '; color:var(--gold); }
+.faq-a { font-family:'Noto Sans JP',sans-serif; font-size:0.72rem; color:var(--gray); line-height:1.7; font-weight:300; }
+
+.p-pro { background: var(--sky); }
+.p-pro .big {
+  font-family: 'Yuji Syuku', serif;
+  font-size: clamp(3.5rem, 17vw, 6.5rem);
+  color: var(--gold);
+  writing-mode: vertical-rl;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  z-index: 1; position: relative;
+}
+.p-pro .fude { font-size: clamp(1.1rem, 5.5vw, 2rem); color:var(--paper); z-index:1; position:relative; }
+.p-pro .fude-sm { font-size: clamp(0.72rem, 3vw, 0.9rem); color:rgba(244,239,228,0.5); z-index:1; position:relative; margin-right:20px; }
+
+.p-cta { background: var(--paper); flex-direction:column; gap:44px; }
+.p-cta .fude { font-size: clamp(1.8rem, 9vw, 3.2rem); z-index:1; position:relative; text-align:center; }
+.cta-btns { display:flex; flex-direction:column; gap:12px; width:100%; max-width:280px; z-index:1; }
+.btn {
+  display:block; padding:15px 20px;
+  font-family:'Noto Sans JP',sans-serif; font-size:0.82rem;
+  letter-spacing:0.12em; text-decoration:none;
+  text-align:center; cursor:pointer; font-weight:300;
+}
+.btn-a { background:var(--ink); color:var(--paper); }
+.btn-b { background:transparent; color:var(--ink); border:1px solid rgba(16,15,13,0.25); }
+
+.row { display:flex; flex-direction:row; align-items:center; }
+</style>
+</head>
+<body>
+
+<div class="panel p1">
+  <div class="bg-kanji" style="font-size:70vw; bottom:-10%; right:-5%;">祝</div>
+  <p class="fude" style="text-align:right;">
+    <span class="accent">食事</span>会婚<br>のススメ
+  </p>
+  <div class="hanko" style="bottom:48px; right:32px;"><span>小晴</span></div>
+  <p class="p1-sub">小晴 ／ 株式会社ハレノヒ</p>
+</div>
+
+<div class="panel p2">
+  <div class="bg-kanji" style="font-size:65vw; top:-5%; left:-5%;">営</div>
+  <div class="row">
+    <p class="fude-sm">浜松・紺屋町<br>完全個室の寿司店</p>
+    <p class="fude">結婚式場<br>総支配人が<br>営む寿司店</p>
+  </div>
+</div>
+
+<div class="panel p3">
+  <div class="bg-kanji" style="font-size:75vw; bottom:-15%; right:-8%; color:rgba(244,239,228,0.08);">人</div>
+  <p class="fude">こんな人に<br>届けたい</p>
+</div>
+
+<div class="panel p-for">
+  <div class="bg-kanji" style="font-size:80vw; bottom:-10%; right:-10%;">派</div>
+  <p class="fude">派手な式は<br>望まない</p>
+  <p class="num-label">一</p>
+</div>
+
+<div class="panel p-for">
+  <div class="bg-kanji" style="font-size:80vw; bottom:-10%; left:-10%;">親</div>
+  <p class="fude">親族友人と<br>心置きなく<br>過ごしたい</p>
+  <p class="num-label">二</p>
+</div>
+
+<div class="panel p-for">
+  <div class="bg-kanji" style="font-size:80vw; bottom:-10%; right:-10%;">負</div>
+  <p class="fude">予算や準備の<br>負担を<br>かけたくない</p>
+  <p class="num-label">三</p>
+</div>
+
+<div class="panel p-for">
+  <div class="bg-kanji" style="font-size:80vw; bottom:-10%; left:-10%;">忘</div>
+  <p class="fude">それでも<br>忘れられない<br>一日にしたい</p>
+  <p class="num-label">四</p>
+</div>
+
+<div class="panel p-feat-title">
+  <div class="bg-kanji" style="font-size:65vw; bottom:-5%; right:-5%;">六</div>
+  <div class="row">
+    <p class="fude-sm">小晴の食事会婚</p>
+    <p class="fude">六つの<br>ポイント</p>
+  </div>
+</div>
+
+<div class="panel p-feat">
+  <p class="num">一</p>
+  <div class="row" style="justify-content:center;">
+    <p class="fude-sm">目立たなくていい</p>
+    <p class="fude">等身大で<br>いい</p>
+  </div>
+</div>
+
+<div class="panel p-feat">
+  <p class="num">二</p>
+  <div class="row" style="justify-content:center;">
+    <p class="fude-sm">寿司職人が魅せます</p>
+    <p class="fude">演出は<br>おまかせを</p>
+  </div>
+</div>
+
+<div class="panel p-feat">
+  <p class="num">三</p>
+  <div class="row" style="justify-content:center;">
+    <p class="fude-sm">誰を呼ぶかで迷わない</p>
+    <p class="fude">近しい人<br>だけで</p>
+  </div>
+</div>
+
+<div class="panel p-feat">
+  <p class="num">四</p>
+  <div class="row" style="justify-content:center;">
+    <p class="fude-sm">予約困難店の全力で</p>
+    <p class="fude">料理は<br>本物を</p>
+  </div>
+</div>
+
+<div class="panel p-feat">
+  <p class="num">五</p>
+  <div class="row" style="justify-content:center;">
+    <p class="fude-sm">打ち合わせ最短一回</p>
+    <p class="fude">準備は<br>楽ちんで</p>
+  </div>
+</div>
+
+<div class="panel p-feat">
+  <p class="num">六</p>
+  <div class="row" style="justify-content:center;">
+    <p class="fude-sm">見積もりつり上げようとしません</p>
+    <p class="fude">明朗<br>会計</p>
+  </div>
+</div>
+
+<div class="panel p-price">
+  <div class="bg-kanji" style="font-size:75vw; bottom:-10%; right:-10%;">半</div>
+  <div class="row">
+    <p class="fude-sm">浮いたお金は<br>新婚旅行へ</p>
+    <p class="fude">結婚式場の<br><span class="accent">半額以下</span>で<br>できますよ</p>
+  </div>
+</div>
+
+<div class="panel p-flow">
+  <div class="bg-kanji" style="font-size:65vw; bottom:-10%; left:-5%; color:rgba(244,239,228,0.08);">流</div>
+  <div class="row" style="align-items:flex-start; padding-top:20px;">
+    <p class="fude">当日の<br>流れ</p>
+    <div class="flow-list">
+      <div class="flow-item"><div class="flow-dot"></div><span class="flow-text">挙式（神前式・人前式）</span></div>
+      <div class="flow-item"><div class="flow-dot"></div><span class="flow-text">乾杯</span></div>
+      <div class="flow-item"><div class="flow-dot"></div><span class="flow-text">寿司と和食のフルコース</span><span class="flow-note">約二〜三時間</span></div>
+      <div class="flow-item"><div class="flow-dot"></div><span class="flow-text">歓談・写真</span></div>
+      <div class="flow-item"><div class="flow-dot"></div><span class="flow-text">お開き</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel p-faq">
+  <div class="bg-kanji" style="font-size:65vw; bottom:-10%; right:-5%;">問</div>
+  <div class="row" style="align-items:flex-start; padding-top:20px;">
+    <p class="fude">よくある<br>質問</p>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <p class="faq-q">挙式なしでもできますか？</p>
+        <p class="faq-a">できます。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">神前式はできますか？</p>
+        <p class="faq-a">近隣の神社とのセットプランもあります。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">衣裳をレンタルしたいのですがありますか？</p>
+        <p class="faq-a">ございます。和装でしたらお二人の白無垢or色打掛と紋付がセットになって66,000円（追加なし・料金なし）でご用意可能です。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">持ち込みは可能ですか？</p>
+        <p class="faq-a">結婚式に必要なものでしたらなんでもどうぞ。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">アレルギー対応は？</p>
+        <p class="faq-a">事前にご連絡いただければ対応します。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">何名から開催できますか？</p>
+        <p class="faq-a">四名様から、最大二十二名様まで。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel p-pro">
+  <div class="bg-kanji" style="font-size:65vw; bottom:-10%; right:-5%; color:rgba(244,239,228,0.08);">千</div>
+  <div class="row">
+    <p class="fude-sm">株式会社ハレノヒ<br>代表取締役　鈴木達也</p>
+    <p class="fude">私たちは<br>結婚式のプロで<br>寿司店です</p>
+    <p class="big" style="margin-left:16px;">数千組</p>
+  </div>
+</div>
+
+<div class="panel p-cta">
+  <div class="bg-kanji" style="font-size:65vw; bottom:-10%; right:-5%;">話</div>
+  <p class="fude">気になったら<br>お気軽に<br>お問い合わせ</p>
+  <div class="cta-btns">
+    <a href="https://koharuharenohi.github.io/koharu-lineprice/estimate.html" class="btn" style="background:#a8854a; color:#f4efe4; border:none;">人数別見積もりを確認する</a>
+    <a href="https://line.me/R/ti/p/@126nuyxn" class="btn btn-a">お問い合わせはこちら</a>
+  </div>
+</div>
+
+<script>
+const panels = document.querySelectorAll('.panel');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+panels.forEach(p => io.observe(p));
+</script>
+</body>
+</html>
