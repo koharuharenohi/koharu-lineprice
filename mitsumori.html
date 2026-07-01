@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>見積もりの考え方 | 鮨 小晴</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
+  :root {
+    --ink: #1a1a1a;
+    --cream: #F7F3EE;
+    --warm-mid: #EDE7DC;
+    --gold: #8B7355;
+    --gold-light: #C9B89A;
+    --deep-green: #2D5A3D;
+    --venue-bg: #f0eee9;
+    --venue-text: #6b6560;
+    --koharu-bg: #EBF1EC;
+    --koharu-accent: #2D5A3D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(139,115,85,0.15);
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 12px;
+    color: rgba(247,243,238,0.6);
+    line-height: 1.8;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    padding: 32px 24px;
+    border-bottom: 1px solid var(--warm-mid);
+  }
+
+  .intro-lead {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.9;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .intro-body {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.9;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    padding: 28px 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gold-light);
+  }
+
+  .section-title-text {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-wrap {
+    padding: 20px 16px 0;
+  }
+
+  .compare-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .col-label {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 6px 4px;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .col-label.item { background: transparent; }
+
+  .col-label.venue {
+    background: #d9d4cc;
+    color: var(--venue-text);
+  }
+
+  .col-label.koharu {
+    background: var(--koharu-accent);
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .compare-row:last-child { margin-bottom: 0; }
+
+  .cell {
+    padding: 12px 8px;
+    font-size: 12px;
+    line-height: 1.6;
+    border-radius: 4px;
+  }
+
+  .cell.item-cell {
+    background: var(--warm-mid);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+  }
+
+  .cell.venue-cell {
+    background: var(--venue-bg);
+    color: #666;
+    text-align: center;
+    font-size: 11px;
+  }
+
+  .cell.koharu-cell {
+    background: var(--koharu-bg);
+    color: var(--koharu-accent);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    background: var(--koharu-accent);
+    color: #fff;
+    padding: 1px 5px;
+    border-radius: 10px;
+    margin-top: 4px;
+    vertical-align: middle;
+  }
+
+  .venue-x {
+    color: #bbb;
+    font-size: 16px;
+  }
+
+  .koharu-check {
+    color: var(--koharu-accent);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  /* ── WHY BLOCK ── */
+  .why-section {
+    padding: 32px 24px;
+    background: var(--ink);
+    color: var(--cream);
+    margin-top: 24px;
+  }
+
+  .why-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+  }
+
+  .why-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .why-title strong {
+    color: var(--gold-light);
+    font-weight: 400;
+  }
+
+  .why-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .why-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .why-body-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  .why-body-text {
+    font-size: 12px;
+    color: rgba(247,243,238,0.7);
+    line-height: 1.8;
+  }
+
+  /* ── PRICE PHILOSOPHY ── */
+  .philosophy {
+    padding: 32px 24px;
+    background: var(--cream);
+  }
+
+  .phil-card {
+    background: #fff;
+    border: 1px solid var(--warm-mid);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .phil-card-title {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .phil-card-text {
+    font-size: 12px;
+    color: #444;
+    line-height: 1.9;
+  }
+
+  .phil-card.highlight {
+    background: var(--koharu-bg);
+    border-color: var(--koharu-accent);
+    border-left-color: var(--koharu-accent);
+  }
+
+  .phil-card.highlight .phil-card-title {
+    color: var(--koharu-accent);
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 36px 24px 48px;
+    text-align: center;
+    background: var(--cream);
+  }
+
+  .cta-lead {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .cta-sub {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 28px;
+    line-height: 1.8;
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    padding: 16px;
+    background: var(--deep-green);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+  }
+
+  .cta-btn:active { opacity: 0.85; }
+
+  .cta-note {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── CLOSING MESSAGE ── */
+  .closing-msg {
+    padding: 32px 24px;
+    background: var(--warm-mid);
+    border-top: 1px solid var(--gold-light);
+    border-bottom: 1px solid var(--gold-light);
+  }
+
+  .closing-main {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 2;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .closing-sub {
+    font-size: 12px;
+    color: #666;
+    line-height: 2;
+  }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 24px auto;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Pricing Concept</p>
+  <h1 class="hero-title">式場と小晴、<br><em>見積もりの<br>考え方が違います</em></h1>
+  <p class="hero-sub">なぜ金額があとで上がりにくいのか。<br>透明性と適正価格への考え方をご説明します。</p>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <p class="intro-lead">小晴はシンプルな食事会婚。<br>料金設定も独自の考え方で<br>「あとで上がる」をなくします。</p>
+  <p class="intro-body">一般的な式場では、見積もりのあとに料理・衣裳・写真・引出物……と積み上がるのが当たり前。小晴はその仕組みそのものが違います。</p>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="section-title">
+  <div class="section-title-line"></div>
+  <span class="section-title-text">比較でわかる違い</span>
+  <div class="section-title-line"></div>
+</div>
+
+<div class="compare-wrap">
+  <div class="compare-header">
+    <div class="col-label item"></div>
+    <div class="col-label venue">一般式場</div>
+    <div class="col-label koharu">小晴</div>
+  </div>
+
+  <div class="compare-row">
+    <div class="cell item-cell">初期見積もり</div>
+    <div class="cell venue-cell">最低ランク構成<br><small style="color:#999">必要なものが<br>入っていないことも</small></div>
+    <div class="cell koharu-cell">増やすオプションが<br>ほとんどありません<br><span class="badge">ほぼ最終金額</span></div>
+  </div>
+
+  <div class="compare-row">
+    <div class="cell item-cell">料理</div>
+    <div class="cell venue-cell" style="color:#c00;">グレードアップが前提<br><small style="color:#bbb">あとで上がりやすい</small></div>
+    <div class="cell koharu-cell">鮨コース込み<br><span class="badge">ワンプライス</span></div>
+  </div>
+
+  <div class="compare-row">
+    <div class="cell item-cell">衣裳<br><small>（和装）</small></div>
+    <div class="cell venue-cell" style="color:#c00;">提携店での<br>追加費用が発生しやすい</div>
+    <div class="cell koharu-cell">自社衣裳<br><span class="badge">追加なし</span><br><small style="color:var(--koharu-accent)">ワンプライス</small></div>
+  </div>
+
+  <div class="compare-row">
+    <div class="cell item-cell">ヘアメイク・着付け</div>
+    <div class="cell venue-cell" style="color:#c00;">通常価格</div>
+    <div class="cell koharu-cell">市場価格の<br><strong style="font-size:15px;color:var(--koharu-accent)">約70%</strong><br><span class="badge">割引価格でご案内</span></div>
+  </div>
+
+  <div class="compare-row">
+    <div class="cell item-cell">写真撮影</div>
+    <div class="cell venue-cell" style="color:#c00;">最低プランで<br><strong style="font-size:14px;">12万円〜</strong></div>
+    <div class="cell koharu-cell">プロカメラマン<br><strong style="font-size:15px;color:var(--koharu-accent)">38,500円</strong><br><span class="badge">で手配可能</span></div>
+  </div>
+
+  <div class="compare-row">
+    <div class="cell item-cell">引出物</div>
+    <div class="cell venue-cell" style="color:#c00;">通常価格</div>
+    <div class="cell koharu-cell">全品<br><strong style="font-size:15px;color:var(--koharu-accent)">20〜40%OFF</strong><br><span class="badge">でご案内</span></div>
+  </div>
+
+  <div class="compare-row">
+    <div class="cell item-cell">装花</div>
+    <div class="cell venue-cell" style="color:#c00;">空間に合わせ<br>大きな装飾が必要<br><small style="color:#bbb">費用がかさみやすい</small></div>
+    <div class="cell koharu-cell">飾る場所が<br>コンパクトなので<br><span class="badge">プラン内で十分</span></div>
+  </div>
+</div>
+
+<!-- WHY SECTION -->
+<div class="why-section">
+  <p class="why-eyebrow">WHY KOHARU</p>
+  <h2 class="why-title">なぜ、<strong>小晴の金額は<br>あとで上がりにくい</strong>のか</h2>
+
+  <div class="why-item">
+    <div class="why-num">1</div>
+    <div>
+      <p class="why-body-title">料理・衣裳はワンプライス</p>
+      <p class="why-body-text">よく「あとで上がる」と言われる料理と衣裳（和装）は、小晴ではワンプライス固定です。見積もりの金額がそのまま最終金額になります。</p>
+    </div>
+  </div>
+
+  <div class="why-item">
+    <div class="why-num">2</div>
+    <div>
+      <p class="why-body-title">外部パートナーへのマージンをいただかない</p>
+      <p class="why-body-text">ヘアメイク・写真・引出物などは、小晴が信頼するパートナーへ直接繋ぎます。式場のような仲介マージンはいただきません。だから写真はプロカメラマンで38,500円、ヘアメイク・着付けは市場価格の約70%でご案内できます。</p>
+    </div>
+  </div>
+
+  <div class="why-item">
+    <div class="why-num">3</div>
+    <div>
+      <p class="why-body-title">空間がコンパクトだから装花も最小限</p>
+      <p class="why-body-text">大きな式場は大きな装花が必要です。小晴はプライベートな個室空間なので、プラン内の装花で十分な彩りになります。</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<div class="philosophy">
+  <div class="section-title" style="padding: 0 0 20px;">
+    <div class="section-title-line"></div>
+    <span class="section-title-text">価格の考え方</span>
+    <div class="section-title-line"></div>
+  </div>
+
+  <div class="phil-card">
+    <p class="phil-card-title">一般式場の見積もりの場合</p>
+    <p class="phil-card-text">最初の見積もりは最低ランクや最小構成のことが多く、必要なものが入っていないことも。料理のグレードアップ、衣裳、写真（最低プランで12万円〜）、引出物……と積み上がり、最終的に初回の1.5〜2倍になることも珍しくありません。</p>
+  </div>
+
+  <div class="phil-card highlight">
+    <p class="phil-card-title">小晴の見積もりの場合</p>
+    <p class="phil-card-text">料理・和装衣裳はワンプライス固定。写真はプロカメラマンで38,500円、ヘアメイク・着付けは市場価格の約70%、引出物は全品20〜40%OFFでご案内。マージンをいただかないから実現できる価格です。見積もりの金額がそのままお支払い金額になることももちろん可能です。</p>
+  </div>
+</div>
+
+<!-- CLOSING MESSAGE -->
+<div class="closing-msg">
+  <p class="closing-main">小晴が目指しているのは、価格を下げることではありません。必要なものを結婚式場と同等のクオリティかつ適正な価格でご提供し、あとから金額が大きく変わらない安心感をお届けすることです。</p>
+  <p class="closing-sub">結婚式場の価格設定にはその理由があります。それを否定するわけではなく、そうでない選択肢を届けられたらと考えています。</p>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="gold-divider"></div>
+  <p class="cta-lead">気になることは、<br>まずLINEで聞いてみてください</p>
+  <p class="cta-sub">お見積もりはご相談内容をもとに<br>個別でご提示しています。<br>費用のことも、内容のことも、お気軽に。</p>
+  <a href="https://lin.ee/XXXXXXX" class="cta-btn">LINEで無料相談する</a>
+  <p class="cta-note">返信は営業時間内（11:00〜20:00）に<br>代表より直接ご連絡いたします</p>
+</div>
+
+</body>
+</html>
+
+
+
+鮨店　小晴
+浜松市中央区紺屋町301-16
+電話:053-452-8181
+
